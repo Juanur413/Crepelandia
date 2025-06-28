@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Crear Producto - Crepelandia</title>
+    <link rel="stylesheet" href="css/estilos.css" />
+    <link rel="shortcut icon" href="./images/logo_crepelandia.png" type="image/x-icon">
+    </head>
+        <body>
+            <header style="background-color: #6e6556;">
+                <nav class="nav container">
+            <div class="nav__logo">
+                <img src="./images/logo_crepelandia.png">
+            </div>
+
+            <ul class="nav__link nav__link--menu">
+                <li class="nav__items">
+                    <a href="index.html" class="nav__links">Inicio</a>
+                </li>
+                <li class="nav__items">
+                    <a href="index.html#menu" class="nav__links">Menu</a>
+                </li>
+                <li class="nav__items">
+                    <a href="index.html#about-us" class="nav__links">Sobre nosotros</a>
+                </li>
+                <li class="nav__items">
+                    <a href="index.html#delivery" class="nav__links">Domicilios</a>
+                </li>
+                <li class="nav__items">
+                    <a href="crear_producto.html" class="nav__links">Crear producto</a>
+                </li>
+
+                <img src="./images/logo_crepelandia.png" class="nav__close">
+            </ul>
+
+            <div class="nav__menu">
+                <img src="./images/logo_crepelandia.png" class="nav__img">
+            </div>
+        </nav>
+            </header>
+    <section class="formulario-container">
+        <h1>Crear Nuevo Producto</h1>
+        <form id="form-producto">
+        <label>Nombre del producto:
+            <input type="text" id="nombre" required>
+        </label>
+
+        <label>URL de la imagen:
+            <input type="text" id="imagen" required>
+        </label>
+
+        <label>Precio:
+            <input type="number" id="precio" required>
+        </label>
+
+        <label>Descripción:
+            <textarea id="descripcion" required></textarea>
+        </label>
+
+        <label>Categoría:
+            <select id="categoria" required>
+            <option value="dulce">Dulce</option>
+            <option value="salado">Salado</option>
+            <option value="bebida">Bebida</option>
+            </select>
+        </label>
+
+        <button type="submit">Crear Producto</button>
+        </form>
+    </section>
+    <footer class="footer">
+        <section id="contact-us" class="footer__container container">
+            <nav class="nav nav--footer">
+                <h2 class="footer__title">CREPELANDIA</h2>
+
+                <ul class="nav__link nav__link--footer">
+                    <li class="nav__items">
+                        <a href="#" class="nav__links">Inicio</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="#menu" class="nav__links">Menu</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="#about-us" class="nav__links">Sobre nosotros</a>
+                    </li>
+                    <li class="nav__items">
+                        <a href="#delivery" class="nav__links">Domicilios</a>
+                    </li>
+                </ul>
+            </nav>
+
+            <form class="footer__form" action="https://formspree.io/f/mknkkrkj" method="POST">
+                <h2 class="footer__newsletter">Suscribete a Crepelandia</h2>
+                <p class="footer__text">¡Para obtener promociones y más!</p>
+                <div class="footer__inputs">
+                    <input type="email" placeholder="Email:" class="footer__input" name="_replyto">
+                    <input type="submit" value="Registrate" class="footer__submit">
+                </div>
+            </form>
+        </section>
+
+        <section class="footer__copy container">
+            <div class="footer__social">
+                <a href="#" class="footer__icons"><img src="./images/facebook.svg" class="footer__img"></a>
+                <a href="#" class="footer__icons"><img src="./images/instagram.svg" class="footer__img"></a>
+            </div>
+
+            <h3 class="footer__copyright">Derechos reservados &copy; Crepelandia</h3>
+        </section>
+    </footer>
+    <script src="js/crear_producto.js"></script>
+    </body>
+    </html>
