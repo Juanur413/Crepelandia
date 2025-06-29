@@ -1,13 +1,19 @@
 {
-  "name": "crepelandia",
+  "name": "crepelandia-backend",
   "version": "1.0.0",
-  "dependencies": {
-    "express": "^4.18.2",
-    "cors": "^2.8.5",
-    "sqlite3": "^5.1.7",
-    "sqlite": "^5.1.6"
-  },
+  "main": "server.js",
+  "type": "module",
   "scripts": {
-    "start": "node backend/server.js"
+      "start": "node backend/server.js",
+      "test": "jest"
+  },
+  "dependencies": {
+      "cors": "^2.8.5",
+      "express": "^4.18.2",
+      "sqlite": "^5.1.1",
+      "sqlite3": "^5.1.2"
+  },
+  "devDependencies": {
+      "jest": "^29.5.0"
   }
 }
