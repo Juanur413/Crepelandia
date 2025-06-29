@@ -18,7 +18,7 @@ app.use(express.json());
 const publicPath = path.resolve(__dirname, '../public');
 app.use(express.static(publicPath));
 
-// Ruta directa por si no lo toma por defecto
+// Ruta para servir index.html en la raíz
 app.get('/', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
 });
