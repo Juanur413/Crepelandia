@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test API - Crepelandia</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .success {
+            background-color: #d4edda;
+            border-color: #c3e6cb;
+            color: #155724;
+        }
+        .error {
+            background-color: #f8d7da;
+            border-color: #f5c6cb;
+            color: #721c24;
+        }
+        button {
+            background-color: #2091F9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background-color: #003c8f;
+        }
+        pre {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test de API - Crepelandia</h1>
+    
+    <div class="test-section">
+        <h2>1. Obtener Productos</h2>
+        <button onclick="testGetProductos()">Probar GET /productos</button>
+        <div id="result-get"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>2. Crear Producto</h2>
+        <button onclick="testCreateProducto()">Probar POST /productos</button>
+        <div id="result-create"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>3. Estado del Servidor</h2>
+        <button onclick="testServerStatus()">Verificar Estado</button>
+        <div id="result-status"></div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://localhost:3000';
+
+        async function testGetProductos() {
+            const resultDiv = document.getElementById('result-get');
+            resultDiv.innerHTML = '<p>Probando...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/productos`);
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.className = 'test-section success';
+                    resultDiv.innerHTML = `
+                        <h3>✅ Éxito - Productos obtenidos (${data.length} productos)</h3>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                } else {
+                    throw new Error(`Error ${response.status}: ${data.error || 'Desconocido'}`);
+                }
+            } catch (error) {
+                resultDiv.className = 'test-section error';
+                resultDiv.innerHTML = `
+                    <h3>❌ Error</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+
+        async function testCreateProducto() {
+            const resultDiv = document.getElementById('result-create');
+            resultDiv.innerHTML = '<p>Probando...</p>';
+            
+            const testProducto = {
+                nombre: 'Producto de Prueba',
+                descripcion: 'Este es un producto de prueba para verificar la API',
+                precio: 9999,
+                categoria: 'dulce',
+                imagen_url: './images/test-product.jpg'
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/productos`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testProducto)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    resultDiv.className = 'test-section success';
+                    resultDiv.innerHTML = `
+                        <h3>✅ Éxito - Producto creado</h3>
+                        <p>ID del producto: ${data.id}</p>
+                        <pre>${JSON.stringify(data, null, 2)}</pre>
+                    `;
+                } else {
+                    throw new Error(`Error ${response.status}: ${data.error || 'Desconocido'}`);
+                }
+            } catch (error) {
+                resultDiv.className = 'test-section error';
+                resultDiv.innerHTML = `
+                    <h3>❌ Error</h3>
+                    <p>${error.message}</p>
+                `;
+            }
+        }
+
+        async function testServerStatus() {
+            const resultDiv = document.getElementById('result-status');
+            resultDiv.innerHTML = '<p>Verificando...</p>';
+            
+            try {
+                const response = await fetch(`${API_BASE}/`);
+                
+                if (response.ok) {
+                    resultDiv.className = 'test-section success';
+                    resultDiv.innerHTML = `
+                        <h3>✅ Servidor funcionando correctamente</h3>
+                        <p>URL: ${API_BASE}</p>
+                        <p>Estado: ${response.status} ${response.statusText}</p>
+                    `;
+                } else {
+                    throw new Error(`Error ${response.status}: ${response.statusText}`);
+                }
+            } catch (error) {
+                resultDiv.className = 'test-section error';
+                resultDiv.innerHTML = `
+                    <h3>❌ Error de conexión</h3>
+                    <p>${error.message}</p>
+                    <p>Asegúrate de que el servidor esté ejecutándose en ${API_BASE}</p>
+                `;
+            }
+        }
+
+        // Auto-test al cargar la página
+        window.addEventListener('load', () => {
+            setTimeout(testServerStatus, 1000);
+        });
+    </script>
+</body>
+</html> 
