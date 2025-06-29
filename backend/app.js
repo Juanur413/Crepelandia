@@ -16,6 +16,7 @@ app.use(express.json());
 
 // Servir archivos estáticos de /public
 const publicPath = path.resolve(__dirname, '../public');
+console.log('Sirviendo archivos estáticos desde:', publicPath);
 app.use(express.static(publicPath));
 
 // Ruta para servir index.html en la raíz
