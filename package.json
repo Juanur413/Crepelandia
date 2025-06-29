@@ -9,6 +9,6 @@
     "sqlite": "^4.0.25"
   },
   "scripts": {
-    "start": "node backend/server.js"
+    "start": "node backend/init_db.js && node backend/server.js"
   }
 }
